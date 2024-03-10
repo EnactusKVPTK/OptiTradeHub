@@ -59,7 +59,7 @@ Rating.belongsTo(Products)
 Products.hasMany(BasketProducts)
 BasketProducts.belongsTo(Products)
 
-Products.hasMany(ProductInfo)
+Products.hasMany(ProductInfo, {as: 'info'})
 ProductInfo.belongsTo(Products)
 
 module.exports = {
