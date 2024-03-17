@@ -1,4 +1,4 @@
-import { ADMIN_ROUTE, LOGIN_ROUTE, PRODUCT_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "./utils/consts"
+import { ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, PRODUCT_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "./utils/consts"
 import Admin from "./pages/Admin"
 import Basket from "./pages/Basket"
 import Shop from "./pages/Shop"
@@ -11,7 +11,7 @@ export const authRoutes = [
         Component: Admin,
     },
     {
-        path: ADMIN_ROUTE,
+        path: BASKET_ROUTE,
         Component: Basket,
     },
 ]
