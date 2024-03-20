@@ -16,15 +16,14 @@ const Auth = observer(() => {
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
 
     const click = async () => {
         try {
             let data;
             if (isLogin) {
-                data = await login(name, email, password);
+                data = await login(email, password);
             } else {
-                data = await registration(name, email, password);
+                data = await registration(email, password);
             }
             user.setUser(user)
             user.setIsAuth(true)
@@ -43,12 +42,6 @@ const Auth = observer(() => {
             <Card style={{width: 600}} className="p-5">
                 <h2 className="m-auto">{isLogin ? 'Авторизация' : "Регистрация"}</h2>
                 <Form className="d-flex flex-column">
-                    <Form.Control
-                        className="mt-3"
-                        placeholder="Введите ваш login..."
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                    />
                     <Form.Control
                         className="mt-3"
                         placeholder="Введите ваш email..."

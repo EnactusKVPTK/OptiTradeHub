@@ -1,18 +1,18 @@
-import React, { createContext } from 'react';
-import ReactDOM from 'react-dom/client';
+import React, {createContext} from 'react';
+import ReactDOM from 'react-dom';
 import App from './App';
-import UserStore from './store/UserStore';
-import ProductStore from './store/ProductStore';
+import UserStore from "./store/UserStore";
+import DeviceStore from "./store/DeviceStore";
 
 export const Context = createContext(null)
-console.log(process.env.REACT_APP_API_URL)
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <Context.Provider value={{
-    user: new UserStore(),
-    product: new ProductStore()
-  }}>
-    <App />
-  </Context.Provider>
+ReactDOM.render(
+    <Context.Provider value={{
+        user: new UserStore(),
+        device: new DeviceStore(),
+    }}>
+        <App />
+    </Context.Provider>,
+    document.getElementById('root')
 );
+
