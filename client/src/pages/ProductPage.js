@@ -3,13 +3,8 @@ import {Col, Image, Container, Row, Card, Button} from "react-bootstrap";
 import bigStar from '../assets/bigStar.png'
 
 const ProductPage = () => {
-    const product = {id: 1, name: "Iphone 12", price: 25000, rating: 5, img: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpriceintanzania.com%2Fwp-content%2Fuploads%2F2020%2F10%2FApple-iPhone-12-Pro.jpg&f=1&nofb=1&ipt=0d1abe60601dd1e88ed197472a3c8c46c2d033600997415b2a7ba0c4ce5be281&ipo=images"}
-    const description = [
-        {id: 1, title: 'operation memory', description: '5gb'},
-        {id: 2, title: 'camera', description: '12 mp'},
-        {id: 3, title: 'operation memory', description: '5gb'},
-        {id: 4, title: 'camera', description: '12 mp'},
-    ]
+    const product = {}
+    const description = []
     return (
         <div>
             <Container className="mt-3">
