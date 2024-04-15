@@ -5,12 +5,18 @@ import {createBrand, createType} from "../../http/deviceAPI";
 
 const CreateBrand = ({show, onHide}) => {
     const [value, setValue] = useState('')
+    const [error, setError] = useState('')
 
     const addBrand = () => {
-        createBrand({name: value}).then(data => {
-            setValue('')
-            onHide()
-        })
+        if (value == "") {
+            setError("Введите название бренда")
+        } else {
+            createBrand({name: value}).then(data => {
+                setValue('')
+                setError('')
+                onHide()
+            })
+        }
     }
     return (
         <Modal
@@ -25,6 +31,7 @@ const CreateBrand = ({show, onHide}) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
+                    <span style={{color: 'red'}}>{error}</span>
                     <Form.Control
                         value={value}
                         onChange={e => setValue(e.target.value)}

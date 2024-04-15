@@ -1,0 +1,133 @@
+/*///////// HEADER ///////////// */
+
+.header_div{
+    height: 80px;
+}
+
+.header_input_div{
+    width: 67%;
+    margin-left: 30px;
+}
+
+.header_input{
+    width: 89%;
+}
+
+.user_logo_div{
+    position: relative;
+    right: 30px;
+}
+
+.user_logo{
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.location_logo_div{
+    position: relative;
+    right: 43px;
+    cursor: pointer;
+}
+
+
+.basket_logo_div{
+    right: 47px;
+    position: relative;
+}
+
+.basket_logo{
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.navbar_button{
+    height: 43px;
+    width: 137px;
+}
+
+.navbar_button_logout{
+
+}
+
+/*///////// DEVICE ITEM ///////////*/
+
+.list-group-item.active {
+    background-color: #ee7b30; 
+    border: none;
+}
+
+.pagination .page-item.active .page-link{
+    background-color: #588B8B;
+    border: none;
+}
+
+.device_item:hover{
+    box-shadow: 0 0 10px #000000;
+}
+
+.device_item{
+    margin-right: 20px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.device_item_name{
+    color: #000;
+    font-weight: bold;
+}
+
+.device_item_description{
+    color: #666;
+}
+
+.device_item_price{
+    color: #cf3838; /* #9B1D20 */
+}
+
+/* ////////// Product Page /////////// */
+
+.device_rating{
+    display: flex;
+    flex-direction: row;
+}
+
+.device_rating span{
+    margin-top: -8px;
+    margin-left: 5px;
+}
+
+.device_button{
+    width: 170px;
+    padding: 5px;
+}
+
+.device_card{
+    padding: 10px;
+}
+
+.device_card h4{
+    margin-top: 5px;
+}
+
+.type_list_item:hover{
+    background-color: orange;
+}
+
+.ann{
+    width: 837px;
+    height: 200px;
+    background-color: blue;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: -12px;
+}
+
+
+/* /////////// FOOTER ////////////// */
+
+svg{
+    margin-right: 20px;
+}

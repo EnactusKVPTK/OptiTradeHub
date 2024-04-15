@@ -6,16 +6,21 @@ import {observer} from "mobx-react-lite";
 import {Context} from "./index";
 import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
+import Footer from './components/Footer';
 
 const App = observer(() => {
     const {user} = useContext(Context)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        check().then(data => {
-            user.setUser(true)
-            user.setIsAuth(true)
-        }).finally(() => setLoading(false))
+        try {
+            check().then(data => {
+                user.setUser(true)
+                user.setIsAuth(true)
+            }).finally(() => setLoading(false))
+        } catch (e) {
+            console.error(e)
+        }
     }, [])
 
     if (loading) {
@@ -26,6 +31,7 @@ const App = observer(() => {
         <BrowserRouter>
             <NavBar />
             <AppRouter />
+            <Footer/>
         </BrowserRouter>
     );
 });

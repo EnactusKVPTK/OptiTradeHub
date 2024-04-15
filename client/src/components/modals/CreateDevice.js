@@ -11,6 +11,8 @@ const CreateDevice = observer(({show, onHide}) => {
     const [price, setPrice] = useState(0)
     const [file, setFile] = useState(null)
     const [info, setInfo] = useState([])
+    const [description, setDescription] = useState('Нет описания')
+    const [errorName, setErrorName] = useState('')
 
     useEffect(() => {
         fetchTypes().then(data => device.setTypes(data))
@@ -32,14 +34,20 @@ const CreateDevice = observer(({show, onHide}) => {
     }
 
     const addDevice = () => {
-        const formData = new FormData()
-        formData.append('name', name)
-        formData.append('price', `${price}`)
-        formData.append('img', file)
-        formData.append('brandId', device.selectedBrand.id)
-        formData.append('typeId', device.selectedType.id)
-        formData.append('info', JSON.stringify(info))
-        createDevice(formData).then(data => onHide())
+        if (name == "" || name <= 4){
+            setName('Название устройства/услуги не должно быть пустым или быть меньше 4 символов')
+        } else {
+            const formData = new FormData()
+            formData.append('name', name)
+            formData.append('price', `${price}`)
+            formData.append('description', description)
+            formData.append('img', file)
+            formData.append('brandId', device.selectedBrand.id)
+            formData.append('typeId', device.selectedType.id)
+            formData.append('info', JSON.stringify(info))
+            console.log(formData)
+            createDevice(formData).then(data => onHide())
+        }
     }
 
     return (
@@ -81,6 +89,7 @@ const CreateDevice = observer(({show, onHide}) => {
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
+                    <span style={{color: 'red'}}>{errorName}</span>
                     <Form.Control
                         value={name}
                         onChange={e => setName(e.target.value)}
@@ -93,6 +102,11 @@ const CreateDevice = observer(({show, onHide}) => {
                         className="mt-3"
                         placeholder="Введите стоимость устройства/услуги"
                         type="number"
+                    />
+                    <Form.Control
+                        as='textarea'
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
                     />
                     <Form.Control
                         className="mt-3"

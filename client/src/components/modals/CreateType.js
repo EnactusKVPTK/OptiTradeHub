@@ -5,12 +5,18 @@ import {createType} from "../../http/deviceAPI";
 
 const CreateType = ({show, onHide}) => {
     const [value, setValue] = useState('')
+    const [error, setError] = useState('')
 
     const addType = () => {
-        createType({name: value}).then(data => {
-            setValue('')
-            onHide()
-        })
+        if(value == "") {
+            setError('Введите название типа')
+        } else {
+            createType({name: value}).then(data => {
+                setError('')
+                setValue('')
+                onHide()
+            })
+        }
     }
 
     return (
@@ -26,6 +32,7 @@ const CreateType = ({show, onHide}) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
+                    <span style={{color: 'red'}}>{error}</span>
                     <Form.Control
                         value={value}
                         onChange={e => setValue(e.target.value)}

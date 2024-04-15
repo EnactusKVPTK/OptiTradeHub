@@ -16,6 +16,7 @@ const Pages = observer(() => {
         <Pagination className="mt-3">
             {pages.map(page =>
                 <Pagination.Item
+                    
                     key={page}
                     active={device.page === page}
                     onClick={() => device.setPage(page)}
