@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import {Container} from "react-bootstrap";
+import {Container, Navbar} from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TypeBar from "../components/TypeBar";
@@ -9,7 +9,8 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import {fetchBrands, fetchDevices, fetchTypes} from "../http/deviceAPI";
 import Pages from "../components/Pages";
-import Announcement from '../components/Announcement';
+import WarningBeta from '../components/WarningBeta';
+import Nav from '../components/Nav';
 
 const Shop = observer(() => {
     const {device} = useContext(Context)
@@ -29,7 +30,7 @@ const Shop = observer(() => {
 
     useEffect(() => {
         try {
-            fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 2).then(data => {
+            fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 18).then(data => {
                 device.setDevices(data.rows)
                 device.setTotalCount(data.count)
             })
@@ -39,14 +40,16 @@ const Shop = observer(() => {
     }, [device.page, device.selectedType, device.selectedBrand,])
 
     return (
-        <Container>
+    <Container style={{margin:'0 auto'}}>
+            <Nav/>
             <Row className="mt-2">
-                <Col md={3}>
+                <Col md={2}>
                     <TypeBar/>
                 </Col>
-                <Col md={9}>
+                <Col md={10}>
                     <BrandBar/>
-                    <Announcement/> 
+                    <WarningBeta/>
+                    {/* <Announcement/>  */}
                     <DeviceList/>
                     <Pages/>
                 </Col>

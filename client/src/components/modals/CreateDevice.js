@@ -11,8 +11,8 @@ const CreateDevice = observer(({show, onHide}) => {
     const [price, setPrice] = useState(0)
     const [file, setFile] = useState(null)
     const [info, setInfo] = useState([])
-    const [description, setDescription] = useState('Нет описания')
-    const [errorName, setErrorName] = useState('')
+    const [description, setDescription] = useState('')
+    const [error, setError] = useState('')
 
     useEffect(() => {
         fetchTypes().then(data => device.setTypes(data))
@@ -34,9 +34,17 @@ const CreateDevice = observer(({show, onHide}) => {
     }
 
     const addDevice = () => {
-        if (name == "" || name <= 4){
-            setName('Название устройства/услуги не должно быть пустым или быть меньше 4 символов')
-        } else {
+        if (name.length <= 4){
+            setError('Название устройства/услуги не должно быть меньше 4 символов')
+            return
+        } else if (price > 1_000_000_000) {
+            setError('Не коректной значение стоймости')
+            return
+        } else if (!description) {
+            setError('Описание не должен быть пустым')
+            return
+        }
+        else {
             const formData = new FormData()
             formData.append('name', name)
             formData.append('price', `${price}`)
@@ -89,7 +97,7 @@ const CreateDevice = observer(({show, onHide}) => {
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
-                    <span style={{color: 'red'}}>{errorName}</span>
+                    <span style={{color: 'red'}}>{error}</span>
                     <Form.Control
                         value={name}
                         onChange={e => setName(e.target.value)}
@@ -104,9 +112,11 @@ const CreateDevice = observer(({show, onHide}) => {
                         type="number"
                     />
                     <Form.Control
+                        style={{marginTop: '15px'}}
                         as='textarea'
                         value={description}
                         onChange={e => setDescription(e.target.value)}
+                        placeholder='Описание товара/услуги'
                     />
                     <Form.Control
                         className="mt-3"

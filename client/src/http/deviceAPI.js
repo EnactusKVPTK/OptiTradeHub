@@ -1,4 +1,5 @@
 import {$authHost, $host} from "./index";
+import {jwtDecode} from "jwt-decode";
 
 export const createType = async (type) => {
     const {data} = await $authHost.post('api/type', type)
@@ -25,7 +26,7 @@ export const createDevice = async (device) => {
     return data
 }
 
-export const fetchDevices = async (typeId, brandId, page, limit= 5) => {
+export const fetchDevices = async (typeId, brandId, page, limit=10) => {
     const {data} = await $host.get('api/device', {params: {
             typeId, brandId, page, limit
         }})

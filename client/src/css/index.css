@@ -1,52 +1,25 @@
+* {
+    font-family: "Open Sans", sans-serif;
+}
+
 /*///////// HEADER ///////////// */
 
 .header_div{
     height: 80px;
 }
 
-.header_input_div{
-    width: 67%;
-    margin-left: 30px;
-}
-
-.header_input{
-    width: 89%;
-}
-
-.user_logo_div{
-    position: relative;
-    right: 30px;
-}
-
-.user_logo{
-    border-radius: 50%;
+.navlink span{
     cursor: pointer;
 }
-
-.location_logo_div{
-    position: relative;
-    right: 43px;
-    cursor: pointer;
+.navlink span:hover{
+    /* text-decoration:underline; */
+    color: #c2c2c2;
 }
 
-
-.basket_logo_div{
-    right: 47px;
-    position: relative;
-}
-
-.basket_logo{
-    margin-right: 8px;
-    cursor: pointer;
-}
 
 .navbar_button{
     height: 43px;
     width: 137px;
-}
-
-.navbar_button_logout{
-
 }
 
 /*///////// DEVICE ITEM ///////////*/
@@ -62,15 +35,20 @@
 }
 
 .device_item:hover{
-    box-shadow: 0 0 10px #000000;
+    box-shadow: 0 0 1px #000000;
 }
 
 .device_item{
     margin-right: 20px;
-    border: 1px solid #999;
-    border-radius: 10px;
+    
+    /* border-radius: 10px; */
     padding-top: 10px;
     padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.device_item h3:hover{
+    text-decoration: underline;
 }
 
 .device_item_name{
