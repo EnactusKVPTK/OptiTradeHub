@@ -1,12 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Button, Card, Col, Container, Image, Row} from "react-bootstrap";
+import {Button, Card, Col, Container, Form, Image, Row} from "react-bootstrap";
 import bigStar from '../assets/bigStar.png'
-import {NavLink, useParams} from 'react-router-dom'
+import {NavLink, useNavigate, useParams} from 'react-router-dom'
 import {fetchOneDevice} from "../http/deviceAPI";
 import { addBasket, checkBasket } from '../http/basketAPI';
 import { check } from '../http/userAPI';
 import '../css/index.css'
 import { Context } from '..';
+import { HELP_ROUTE } from '../utils/consts';
 
 const DevicePage = () => {
     const [device, setDevice] = useState({info: []})
@@ -15,6 +16,8 @@ const DevicePage = () => {
     // const [userId, setUserId] = useState('')
     // const [inBasket, setInBasket] = useState('')
     const {id} = useParams()
+    const navigate = useNavigate()
+    const [error, setError] = useState(false)
     // let price = device.price
     // price = price.toLocaleString()
 
@@ -23,6 +26,8 @@ const DevicePage = () => {
             check().then(data => {
                 setEmail(data.email)
             })
+        } else {
+            setError(true)
         }
     }, [])
 
@@ -42,7 +47,7 @@ const DevicePage = () => {
                 </Col>
                 <Col md={4}>
                     <Row className="d-flex flex-column">
-                        <h2>{device.name}</h2>
+                        <h3>{device.name}</h3>
                         <div className='device_rating'>
                             Рейтинг:
                             <span
@@ -54,7 +59,7 @@ const DevicePage = () => {
                             
                         </div>
                         <div className='description'>
-                            <h2>Описание:</h2>
+                            <h3>Описание:</h3>
                             <p>{device.description}</p>
                         </div>
                     </Row>
@@ -66,19 +71,40 @@ const DevicePage = () => {
                     >
                         <h4>В корзину</h4>
                         <h4 className='device_price'>От: <spqn>{device.price}</spqn> ₸</h4>
+                        {error ? 
+                        <span style={{fontSize: '16px', marginTop:'10px', color: 'red'}}>Пожайлуста авторизуйтесь чтобы делать заказы</span>
+                        : 
                         <Button className='device_button' onClick={add_basket} variant={"outline-dark"}>Добавить в корзину</Button>
+                        }
                         <br/>
-                        <NavLink style={{fontSize: '16px', marginTop: '32px'}}>Помощь</NavLink>
+                        <div onClick={() => navigate(HELP_ROUTE)}  style={{fontSize: '16px', marginTop: '32px'}}><p className='help_link' style={{cursor: 'pointer'}}>Помощь</p></div>
                     </Card>
                 </Col>
             </Row>
             <Row className="d-flex flex-column m-3">
-                <h1>Характеристики</h1>
+                <h4>Характеристики</h4>
                 {device.info.map((info, index) =>
                     <Row key={info.id} style={{background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10}}>
                         {info.title}: {info.description}
                     </Row>
                 )}
+            </Row>
+            <Row className="d-flex flex-column m-3">
+                <h4>Коментарии</h4>
+                <Form>
+                    <Form.Control 
+                        type="text"
+                        className="input_comments"
+                        placeholder='Добавить коментарий...'
+                    /> 
+                </Form>
+                <div class="alert alert-warning mt-2" style={{marginLeft: '-30px', maxWidth:'130%'}} role="alert">
+                    <h4 class="alert-heading">Уважаемые клиенты,</h4>
+                    <p>Мы приносим извинения за неудобства, но в данный момент <b>функция комментирования временно недоступна.</b> Мы работаем над решением этой проблемы и постараемся восстановить возможность оставлять комментарии как можно скорее. Пожалуйста, оставайтесь на связи и следите за обновлениями.</p>
+                    <p>Благодарим за ваше понимание и терпение.</p>
+                    <p>С уважением,<br/>
+                    Команда OptiTradeHub!</p>
+                </div>
             </Row>
         </Container>
     );

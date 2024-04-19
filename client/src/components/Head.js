@@ -3,7 +3,7 @@ import {Context} from "../index";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import {NavLink} from "react-router-dom";
-import {ABOUT_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, LOCATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE, USER_ROUTE} from "../utils/consts";
+import {ABOUT_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, LOCATION_ROUTE, LOGIN_ROUTE, NOTIFICATION_ROUTE, SHOP_ROUTE, USER_ROUTE} from "../utils/consts";
 import {Button, Form} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
 import { check } from '../http/userAPI';
@@ -12,7 +12,7 @@ import {useNavigate} from 'react-router-dom'
 import Image from "react-bootstrap/Image";
 import basketPng from '../assets/basket-white.png'
 import userLogo from '../assets/user.jpg'
-import locationLogo from '../assets/location.png'
+import notification from '../assets/notification.png'
 import '../css/index.css'
 
 const Head = observer(() => {
@@ -147,17 +147,17 @@ const Head = observer(() => {
                     <Image width={30} height={25} src={basketPng}/>
                     <p style={{fontSize:'12px'}}>Корзина</p>
                 </div>
-                <div onClick={() => navigate(LOCATION_ROUTE)} className='location_logo_div' style={{marginLeft:'20px', textAlign:'center', marginTop: '20px', cursor:'pointer'}}>
-                    <Image width={18} height={28} src={locationLogo}/>
+                <div onClick={() => navigate(NOTIFICATION_ROUTE)} style={{marginLeft:'20px', textAlign:'center', marginTop: '20px', cursor:'pointer'}}>
+                    <Image width={32} height={28} src={notification}/>
                     <p style={{fontSize:'12px'}}>Увд.</p>
                 </div>
             </div>
             </ul>
             <ul style={{color: 'white'}} class="nav navlink me-auto">
-                <li class="nav-item"><span onClick={() => navigate(SHOP_ROUTE)} class="nav-link link-dark px-2 active" aria-current="page">Home</span></li>
-                <li class="nav-item"><span onClick={() => navigate(ABOUT_ROUTE)}  class="nav-link link-dark px-2">About</span></li>
-                <li class="nav-item"><span class="nav-link link-dark px-2">Pricing</span></li>
-                <li style={{marginRight: '15px'}} class="nav-item"><span class="nav-link link-dark px-2">FAQs</span></li>
+                <li class="nav-item"><span onClick={() => navigate(SHOP_ROUTE)} class="nav-link link-dark px-2 active" aria-current="page">Товары</span></li>
+                <li class="nav-item"><span onClick={() => navigate(ABOUT_ROUTE)} class="nav-link link-dark px-2">О нас</span></li>
+                <li class="nav-item"><span onClick={() => navigate(LOCATION_ROUTE)} class="nav-link link-dark px-2">Адреса</span></li>
+                <li style={{marginRight: '15px'}} class="nav-item"><span class="nav-link link-dark px-2">FAQ</span></li>
             {user.isAuth ?
                     <Nav className="ml-auto">
                         {user.isAdmin ?

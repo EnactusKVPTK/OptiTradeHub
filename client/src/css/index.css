@@ -2,6 +2,27 @@
     font-family: "Open Sans", sans-serif;
 }
 
+.help_link{
+    color: rgb(64, 64, 255);
+}
+
+.help_link:hover{
+    text-decoration: underline;
+}
+
+.input_comments{
+    border-bottom: 1px solid #000;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+}
+
+.input_comments:focus{
+    border-color: initial;
+    box-shadow: none;
+}
+
 /*///////// HEADER ///////////// */
 
 .header_div{
@@ -108,4 +129,13 @@
 
 svg{
     margin-right: 20px;
+}
+
+.text-reset{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.text-reset:hover{
+    text-decoration: none;
 }

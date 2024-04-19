@@ -1,5 +1,5 @@
 import Admin from "./pages/Admin";
-import {ADMIN_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE, LOCATION_ROUTE, USER_ROUTE, ABOUT_ROUTE} from "./utils/consts";
+import {ADMIN_ROUTE, NOTIFICATION_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE, LOCATION_ROUTE, USER_ROUTE, ABOUT_ROUTE, HELP_ROUTE, NOTIFICATION} from "./utils/consts";
 import Basket from "./pages/Basket";
 import Shop from "./pages/Shop";
 import Auth from "./pages/Auth";
@@ -7,6 +7,8 @@ import DevicePage from "./pages/DevicePage";
 import Location from "./pages/Location";
 import User from "./pages/User";
 import About from "./pages/About";
+import Help from "./pages/Help";
+import Notification from "./pages/Notification";
 
 export const authRoutes = [
     {
@@ -31,6 +33,14 @@ export const publicRoutes = [
     {
         path: SHOP_ROUTE,
         Component: Shop
+    },
+    {
+        path: NOTIFICATION_ROUTE,
+        Component: Notification
+    },
+    {
+        path: HELP_ROUTE,
+        Component: Help
     },
     {
         path: ABOUT_ROUTE,

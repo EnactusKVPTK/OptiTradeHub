@@ -1,8 +1,10 @@
 import React from 'react'
 import '../css/index.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { ABOUT_ROUTE, HELP_ROUTE } from '../utils/consts'
 
 const Footer = () => {
+  const navigate = useNavigate()
     return (
     <footer className="text-center text-lg-start bg-body-tertiary text-muted">
       <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
@@ -41,29 +43,29 @@ const Footer = () => {
     
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
-                Products
+                Больше о enactus
               </h6>
               <p>
-                <a href="#!" className="text-reset">Angular</a>
+                <a href="https://enactus.org/" className="text-reset">Enactus.org</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">React</a>
+                <a href="https://enactus.kz/" className="text-reset">Enactus.kz</a>
               </p>
             </div>
     
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
-                Useful links
+                Полезные ссылки
               </h6>
               <p>
-                <a href="#!" className="text-reset">About</a>
+                <a onClick={() => navigate(ABOUT_ROUTE)} className="text-reset">О нас</a>
               </p>
               <p>
-                <a href="#!" className="text-reset">Help</a>
+                <a onClick={() => navigate(HELP_ROUTE)} className="text-reset">Помощь</a>
               </p>
             </div>
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+              <h6 className="text-uppercase fw-bold mb-4">Контакты</h6>
               <p><i className="fas fa-home me-3"></i> Karaganda, KG 100000, KZ</p>
               <p>
                 <i className="fas fa-envelope me-3"></i>
