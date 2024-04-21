@@ -3,7 +3,7 @@
 }
 
 .help_link{
-    color: rgb(64, 64, 255);
+    color: rgb(60, 111, 252);
 }
 
 .help_link:hover{
@@ -18,9 +18,30 @@
     border-radius: 0px;
 }
 
+
 .input_comments:focus{
     border-color: initial;
     box-shadow: none;
+}
+
+.dropdown-toggle::after {
+    display: none; /* Скрываем стрелку */
+}
+
+.no-click-effect:focus, /* Убираем эффекты при фокусе */
+.no-click-effect:hover, /* Убираем эффекты при наведении */
+.no-click-effect.active { /* Убираем эффекты в активном состоянии */
+  background-color: transparent !important; /* Устанавливаем прозрачный фон */
+  border-color: transparent !important; /* Устанавливаем прозрачную обводку */
+  box-shadow: none !important; /* Убираем тень */
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: transparent; /* Убираем фоновый цвет при фокусе или наведении */
+  color: inherit; /* Сохраняем цвет текста */
+  text-decoration: none; /* Убираем подчеркивание текста */
+  outline: none; /* Убираем контур фокуса */
 }
 
 /*///////// HEADER ///////////// */
@@ -60,7 +81,7 @@
 }
 
 .device_item{
-    margin-right: 20px;
+    /* margin-right: 20px; */
     
     /* border-radius: 10px; */
     padding-top: 10px;
@@ -139,3 +160,4 @@ svg{
 .text-reset:hover{
     text-decoration: none;
 }
+

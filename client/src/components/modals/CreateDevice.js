@@ -12,7 +12,9 @@ const CreateDevice = observer(({show, onHide}) => {
     const [file, setFile] = useState(null)
     const [info, setInfo] = useState([])
     const [description, setDescription] = useState('')
+    const [phone, setPhone] = useState('')
     const [error, setError] = useState('')
+    const phonePattern = /^((\+7)|8)?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{2}[\s.-]?\d{2}$/;
 
     useEffect(() => {
         fetchTypes().then(data => device.setTypes(data))
@@ -43,7 +45,10 @@ const CreateDevice = observer(({show, onHide}) => {
         } else if (!description) {
             setError('Описание не должен быть пустым')
             return
-        }
+        } else if (!phonePattern.test(phone)) {
+            setError('Не коректный телефон')
+            return
+        } 
         else {
             const formData = new FormData()
             formData.append('name', name)
@@ -53,6 +58,7 @@ const CreateDevice = observer(({show, onHide}) => {
             formData.append('brandId', device.selectedBrand.id)
             formData.append('typeId', device.selectedType.id)
             formData.append('info', JSON.stringify(info))
+            formData.append('phone', phone)
             console.log(formData)
             createDevice(formData).then(data => onHide())
         }
@@ -117,6 +123,13 @@ const CreateDevice = observer(({show, onHide}) => {
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                         placeholder='Описание товара/услуги'
+                    />
+                    <Form.Control
+                        style={{marginTop: '15px'}}
+                        type="tel"
+                        value={phone}
+                        onChange={e => setPhone(e.target.value)}
+                        placeholder='Телефон для связи с поставщиком'
                     />
                     <Form.Control
                         className="mt-3"

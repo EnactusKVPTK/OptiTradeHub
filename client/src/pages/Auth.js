@@ -50,7 +50,9 @@ const Auth = observer(() => {
                     setError('Не коректный email')
                     return
                 } else {
-                    data = await login(email, password);
+                    data = await login(email, password)
+                    user.setIsAuth(true)
+                    
                 }
             } else {
                 if(!isEmailValid(email)){
@@ -70,6 +72,7 @@ const Auth = observer(() => {
                     return
                 } else {
                     data = await registration(name, phone, email, password, role);
+                    user.setIsAuth(true)
                 }
             }
             if (role == "ADMIN") {
@@ -137,7 +140,7 @@ const Auth = observer(() => {
                     }
                     <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
                         {isLogin ?
-                            <div>
+                            <div style={{marginBottom:'10px'}}>
                                 Нет аккаунта? <NavLink to={REGISTRATION_ROUTE}>Зарегистрируйся!</NavLink>
                             </div>
                             :
@@ -162,7 +165,7 @@ const Auth = observer(() => {
                                 </div>
                                 <Agreement show={agreementVisible} onHide={() => setAgreementVisible(false)} />
                                 <br/>
-                                Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Войдите!</NavLink>
+                                <div style={{marginBottom:'10px'}}>Есть аккаунт? <NavLink to={LOGIN_ROUTE}>Войдите!</NavLink></div>
                             </div>
                         }
                         

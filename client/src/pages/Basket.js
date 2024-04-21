@@ -27,30 +27,32 @@ const Basket = () => {
     }
     return (
         <Container>
-            <Row>
-                <div>
-                    <Col >
+            {!devices ? 
+            <p style={{marginTop: '30px', marginBottom:'30px', textAlign:'center'}}>Здесь будут товары которые находятся в вашей корзине.</p> 
+                :
+            <Row style={{margin: '20px 0 20px 0'}}>
+                <Col >
                     {devices.map(device => 
-                    <div style={{borderBottom: '1px solid #4d4d4d', paddingTop: '5px', paddingBottom: '5px'}} className={"mt-2 d-flex"} onClick={() => navigate(DEVICE_ROUTE + '/' + device.device.id)}>
-                        <Image style={{}} width={120} height={115} src={process.env.REACT_APP_API_URL + device.device.img}/>
-                        {console.log(device.device.img)}
-                            <div style={{marginLeft:'30px', width: '100%'}}>
-                                <h3 style={{fontSize: '20px'}}>{device.device.name}</h3>     
-                                <div style={{marginTop:'10px'}} className='device_item_description'><p>{truncateString(device.device.description, 50)}</p></div>
-                            </div>
-                            <div style={{fontSize: '16px', float:'right', width: '100px'}}>{device.device.price.toLocaleString()} ₸</div>
-                    </div>)}
-                    </Col>
-                    <Col md={3}>
-                        <div style={{width: '300px',marginTop:'10px', marginLeft:'10px'}}>
-                            <Button onClick={() => setTypographyVisible(true)} style={{ padding: '12px 43px'}}>Перейти к оформлению</Button>
-                            <Typography show={typographyVisible} onHide={() => setTypographyVisible(false)}/>
-                            <p style={{color:'#888', marginTop:'3px', fontSize:'14px'}}>Cпособы и доставки можно выбрать при оформлении заказа</p>
-                            <span><div onClick={() => navigate(HELP_ROUTE)}  style={{fontSize: '16px', marginTop: '32px'}}><p className='help_link' style={{cursor: 'pointer'}}>Помощь</p></div></span>
-                        </div>
-                    </Col>
-                </div>
+                        <div style={{borderBottom: '1px solid #8a8a8a', paddingTop: '5px', paddingBottom: '5px'}} className={"mt-2 d-flex"} onClick={() => navigate(DEVICE_ROUTE + '/' + device.device.id)}>
+                            <Image style={{}} width={120} height={115} src={process.env.REACT_APP_API_URL + device.device.img}/>
+                            {console.log(device.device.img)}
+                                <div style={{marginLeft:'30px', width: '100%'}}>
+                                    <h3 style={{fontSize: '20px'}}>{device.device.name}</h3>     
+                                    <div style={{marginTop:'10px'}} className='device_item_description'><p>{truncateString(device.device.description, 50)}</p></div>
+                                </div>
+                                <div style={{fontSize: '16px', float:'right', width: '100px'}}>{device.device.price.toLocaleString()} ₸</div>
+                        </div>)}
+                </Col>
+                <Col md={3}>
+                    <div style={{width: '300px',marginTop:'10px', marginLeft:'10px'}}>
+                        <Button onClick={() => setTypographyVisible(true)} style={{ padding: '12px 43px'}}>Перейти к оформлению</Button>
+                        <Typography show={typographyVisible} onHide={() => setTypographyVisible(false)}/>
+                        <p style={{color:'#888', marginTop:'3px', fontSize:'14px'}}>Cпособы и доставки можно выбрать при оформлении заказа</p>
+                        <span><div onClick={() => navigate(HELP_ROUTE)}  style={{fontSize: '16px', marginTop: '32px'}}><p className='help_link' style={{cursor: 'pointer'}}>Помощь</p></div></span>
+                    </div>
+                </Col>
             </Row>
+            }
         </Container>
     );
 };

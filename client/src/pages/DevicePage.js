@@ -71,13 +71,14 @@ const DevicePage = () => {
                     >
                         <h4>В корзину</h4>
                         <h4 className='device_price'>От: <spqn>{device.price}</spqn> ₸</h4>
-                        {error ? 
-                        <span style={{fontSize: '16px', marginTop:'10px', color: 'red'}}>Пожайлуста авторизуйтесь чтобы делать заказы</span>
-                        : 
+                        {user.isAuth ? 
                         <Button className='device_button' onClick={add_basket} variant={"outline-dark"}>Добавить в корзину</Button>
+                        : 
+                        <span style={{fontSize: '16px', marginTop:'10px', color: 'red'}}>Пожайлуста авторизуйтесь чтобы делать заказы</span>
                         }
-                        <br/>
-                        <div onClick={() => navigate(HELP_ROUTE)}  style={{fontSize: '16px', marginTop: '32px'}}><p className='help_link' style={{cursor: 'pointer'}}>Помощь</p></div>
+                        <span style={{fontSize: '14px', marginTop:'8px'}}>Номер поставщика: <br/>{device.phone}</span>
+                        
+                        <div onClick={() => navigate(HELP_ROUTE)}  style={{fontSize: '16px', marginTop: '28px'}}><p className='help_link' style={{cursor: 'pointer'}}>Помощь</p></div>
                     </Card>
                 </Col>
             </Row>
@@ -90,7 +91,7 @@ const DevicePage = () => {
                 )}
             </Row>
             <Row className="d-flex flex-column m-3">
-                <h4>Коментарии</h4>
+                <h4 style={{marginTop: '15px'}} >Коментарии</h4>
                 <Form>
                     <Form.Control 
                         type="text"

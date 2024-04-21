@@ -8,6 +8,7 @@ import '../css/index.css'
 
 
 const DeviceItem = ({device}) => {
+    
     const truncateString = (str, maxLength) => {
         if (str.length > maxLength) {
             return str.substring(0, maxLength - 3) + '...'
@@ -27,6 +28,7 @@ const DeviceItem = ({device}) => {
             <Image style={{}} width={190} height={175} src={process.env.REACT_APP_API_URL + device.img}/>
                 <div style={{marginLeft:'15px'}}>
                     <h3 style={{fontSize: '22px'}}>{device.name}</h3>
+                    <span style={{color: 'red', fontWeight:'600', fontSize:'14px'}}>ВНИМАНИЕ ТОВАР/УСЛУГА ЯВЛЯЕТСЯ ТЕСТОВЫМ!</span>
                     <div className="d-flex align-items">
                         <div>Рейтинг: {device.rating}</div>
                         {/* <Image width={18} height={18} src={star}/> */}
